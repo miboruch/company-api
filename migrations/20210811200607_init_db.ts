@@ -3,14 +3,20 @@ import * as dotenv from 'dotenv';
 dotenv.config();
 
 export async function up(knex: Knex): Promise<void> {
-  return knex.schema.createTable('users', (table) => {
-    table.increments('id').primary();
-    table.text('name').notNullable();
-    table.text('surname').notNullable();
-    table.text('email').notNullable();
-    table.text('country').notNullable();
-    table.text('address').notNullable();
-  });
+  return knex.schema
+    .createTable('users', (table) => {
+      table.increments('id').primary();
+      table.text('name').notNullable();
+      table.text('surname').notNullable();
+      table.text('email').notNullable();
+      table.text('country').notNullable();
+      table.text('address').notNullable();
+    })
+    .createTable('tokens', (table) => {
+      table.increments('id').primary();
+      table.date('creationDate').notNullable();
+      table.text('token').notNullable();
+    });
 }
 
 export async function down(knex: Knex): Promise<void> {

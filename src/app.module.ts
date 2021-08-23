@@ -8,6 +8,9 @@ import { ConfigModule } from 'nestjs-config';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { UsersModule } from './users/users.module';
+import { TokensController } from './tokens/tokens.controller';
+import { TokensService } from './tokens/tokens.service';
+import { TokensModule } from './tokens/tokens.module';
 
 @Module({
   imports: [
@@ -23,8 +26,9 @@ import { UsersModule } from './users/users.module';
       }),
     }),
     UsersModule,
+    TokensModule,
   ],
-  controllers: [AppController],
-  providers: [AppService],
+  controllers: [AppController, TokensController],
+  providers: [AppService, TokensService],
 })
 export class AppModule {}
